@@ -1,0 +1,30 @@
+/*
+Problem: Nth Highest Salary
+LeetCode #177
+
+Write a function to get the Nth highest distinct salary
+from the Employee table.
+
+If there is no Nth highest salary, return NULL.
+
+Approach:
+MySQL Function + DISTINCT + ORDER BY + LIMIT + OFFSET
+
+1. Convert N into a zero-based offset by subtracting 1.
+2. SELECT DISTINCT removes duplicate salaries.
+3. ORDER BY salary DESC sorts salaries from highest to lowest.
+4. LIMIT 1 returns one salary.
+5. OFFSET N skips the previous highest salaries.
+*/
+
+CREATE FUNCTION getNthHighestSalary(N INT) RETURNS INT
+BEGIN
+    SET N = N - 1;
+
+    RETURN (
+        SELECT DISTINCT salary
+        FROM Employee
+        ORDER BY salary DESC
+        LIMIT 1 OFFSET N
+    );
+END

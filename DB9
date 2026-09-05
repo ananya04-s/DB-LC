@@ -1,0 +1,28 @@
+/*
+Problem: Consecutive Numbers
+LeetCode #180
+
+Find all numbers that appear at least three times consecutively.
+
+Approach:
+CTE + Window Function (LEAD)
+
+1. Use LEAD(num, 1) to get the next number.
+2. Use LEAD(num, 2) to get the number after that.
+3. Compare the current number with both next numbers.
+4. If all three are equal, return the number.
+5. DISTINCT removes duplicate results.
+*/
+
+WITH cte AS (
+    SELECT
+        num,
+        LEAD(num, 1) OVER (ORDER BY id) AS num1,
+        LEAD(num, 2) OVER (ORDER BY id) AS num2
+    FROM Logs
+)
+
+SELECT DISTINCT num AS ConsecutiveNums
+FROM cte
+WHERE num = num1
+  AND num = num2;

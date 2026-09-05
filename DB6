@@ -1,0 +1,21 @@
+/*
+Problem: Customers Who Never Order
+LeetCode #183
+
+Write a solution to find all customers who never placed an order.
+
+Approach:
+LEFT JOIN + NULL Check
+
+1. Start with all customers.
+2. LEFT JOIN the Orders table using customer ID.
+3. Customers without matching orders will have NULL values
+   from the Orders table.
+4. Filter those customers using IS NULL.
+*/
+
+SELECT name AS Customers
+FROM Customers
+LEFT JOIN Orders
+    ON Customers.id = Orders.customerId
+WHERE Orders.customerId IS NULL;

@@ -1,0 +1,25 @@
+/*
+Problem: Employee Bonus
+LeetCode #577
+
+Report the name and bonus amount of each employee whose
+bonus is less than 1000 or who does not have a bonus.
+
+Approach:
+LEFT JOIN + NULL Check
+
+1. Start with all employees.
+2. LEFT JOIN the Bonus table using empId.
+3. Employees without a bonus will have NULL.
+4. Filter employees whose bonus is less than 1000
+   or whose bonus is NULL.
+*/
+
+SELECT
+    Employee.name,
+    Bonus.bonus
+FROM Employee
+LEFT JOIN Bonus
+    ON Employee.empId = Bonus.empId
+WHERE Bonus.bonus < 1000
+   OR Bonus.bonus IS NULL;

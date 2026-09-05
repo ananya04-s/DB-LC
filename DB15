@@ -1,0 +1,18 @@
+/*
+Problem: Find Customer Referee
+LeetCode #584
+
+Find the names of customers who were NOT referred
+by the customer with id = 2.
+
+Approach:
+COALESCE + WHERE
+
+1. referee_id can contain NULL values.
+2. COALESCE(referee_id, 0) replaces NULL with 0.
+3. Filter customers whose referee_id is not equal to 2.
+*/
+
+SELECT name
+FROM Customer
+WHERE COALESCE(referee_id, 0) != 2;

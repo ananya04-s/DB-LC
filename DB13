@@ -1,0 +1,41 @@
+/*
+Problem: Rank Scores
+LeetCode #178
+
+Write a solution to rank the scores.
+
+The ranking should follow these rules:
+1. Scores are ranked from highest to lowest.
+2. Equal scores receive the same rank.
+3. The next rank is consecutive (Dense Rank).
+
+Approach:
+Self Join + COUNT
+
+1. Create a derived table containing distinct scores.
+2. Compare each score with all distinct scores greater than
+   or equal to it.
+3. Count those scores to determine the rank.
+4. Order the final result by score in descending order.
+
+Example:
+Scores: 100, 100, 90, 80
+
+Ranks:
+100 -> 1
+100 -> 1
+90  -> 2
+80  -> 3
+*/
+
+SELECT
+    S.score,
+    COUNT(S2.score) AS `rank`
+FROM Scores S,
+(
+    SELECT DISTINCT score
+    FROM Scores
+) S2
+WHERE S.score <= S2.score
+GROUP BY S.id
+ORDER BY S.score DESC;

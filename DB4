@@ -1,0 +1,24 @@
+/*
+Problem: Employees Earning More Than Their Managers
+LeetCode #181
+
+Find the employees who earn more than their managers.
+
+Approach:
+Self Join
+
+The Employee table contains both employees and managers,
+so we join the table with itself.
+
+1. e1 represents the manager.
+2. e2 represents the employee.
+3. Match the employee's managerId with the manager's id.
+4. Compare their salaries.
+5. Return employees whose salary is greater than their manager's salary.
+*/
+
+SELECT e2.name AS Employee
+FROM Employee AS e1
+JOIN Employee AS e2
+    ON e1.id = e2.managerId
+WHERE e2.salary > e1.salary;

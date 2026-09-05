@@ -1,0 +1,30 @@
+/*
+Problem: Department Highest Salary
+LeetCode #184
+
+Find employees who have the highest salary in each department.
+
+Approach:
+JOIN + Correlated Subquery + MAX
+
+1. Join Employee with Department to get department names.
+2. For each employee, find the maximum salary in their department.
+3. Compare the employee's salary with that maximum salary.
+4. Return all employees whose salary equals the highest salary.
+
+This approach correctly handles ties, meaning multiple employees
+can be returned if they share the highest salary in a department.
+*/
+
+SELECT
+    d.name AS Department,
+    e.name AS Employee,
+    e.salary AS Salary
+FROM Employee e
+JOIN Department d
+    ON e.departmentId = d.id
+WHERE e.salary = (
+    SELECT MAX(salary)
+    FROM Employee
+    WHERE departmentId = e.departmentId
+);

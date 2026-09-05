@@ -1,0 +1,27 @@
+/*
+Problem: Second Highest Salary
+LeetCode #176
+
+Write a solution to find the second highest distinct salary
+from the Employee table.
+
+If there is no second highest salary, return NULL.
+
+Approach:
+Subquery + DISTINCT + ORDER BY + LIMIT + OFFSET
+
+1. SELECT DISTINCT removes duplicate salaries.
+2. ORDER BY salary DESC sorts salaries from highest to lowest.
+3. LIMIT 1 returns one result.
+4. OFFSET 1 skips the highest salary.
+5. The outer SELECT returns the result as SecondHighestSalary.
+
+If no second highest salary exists, the subquery returns NULL.
+*/
+
+SELECT (
+    SELECT DISTINCT salary
+    FROM Employee
+    ORDER BY salary DESC
+    LIMIT 1 OFFSET 1
+) AS SecondHighestSalary;

@@ -1,0 +1,19 @@
+/*
+Problem: Game Play Analysis I
+LeetCode #511
+
+Write a solution to find the first login date for each player.
+
+Approach:
+GROUP BY + MIN
+
+1. Group all records by player_id.
+2. Use MIN(event_date) to find the earliest login date
+   for each player.
+*/
+
+SELECT
+    player_id,
+    MIN(event_date) AS first_login
+FROM Activity
+GROUP BY player_id;

@@ -1,0 +1,21 @@
+/*
+Problem: Delete Duplicate Emails
+LeetCode #196
+
+Write a solution to delete all duplicate emails,
+keeping only the record with the smallest id.
+
+Approach:
+Self Join + DELETE
+
+1. Join the Person table with itself.
+2. Find records with the same email.
+3. Compare their IDs.
+4. Delete the record with the larger ID.
+5. The record with the smallest ID is preserved.
+*/
+
+DELETE p1
+FROM Person p1, Person p2
+WHERE p1.email = p2.email
+  AND p1.id > p2.id;

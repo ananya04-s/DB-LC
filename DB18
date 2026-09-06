@@ -1,0 +1,26 @@
+/*
+Problem: Triangle Judgement
+LeetCode #610
+
+Determine whether three side lengths can form a triangle.
+
+Triangle condition:
+The sum of any two sides must be greater than
+the remaining side.
+
+Approach:
+IF + Logical Conditions
+
+Check all three triangle inequalities and return
+"Yes" if they form a valid triangle, otherwise "No".
+*/
+
+SELECT *,
+    IF(
+        x + y > z
+        AND y + z > x
+        AND x + z > y,
+        'Yes',
+        'No'
+    ) AS triangle
+FROM Triangle;

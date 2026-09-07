@@ -1,0 +1,30 @@
+1050. Actors and Directors Who Cooperated At Least Three Times
+Solved
+Easy
+Topics
+premium lock icon
+Companies
+SQL Schema
+Pandas Schema
+Table: ActorDirector
+
++-------------+---------+
+| Column Name | Type    |
++-------------+---------+
+| actor_id    | int     |
+| director_id | int     |
+| timestamp   | int     |
++-------------+---------+
+timestamp is the primary key (column with unique values) for this table.
+
+  SOLUTION:
+SELECT actor_id, director_id
+FROM (
+    SELECT 
+        actor_id,
+        director_id,
+        COUNT(timestamp) AS cooperated
+    FROM ActorDirector
+    GROUP BY actor_id, director_id
+) AS table1
+WHERE cooperated >= 3;

@@ -1,0 +1,70 @@
+# 🎬 Not Boring Movies
+
+## 📌 Question
+
+Write a solution to report the movies with:
+
+- An **odd-numbered ID**
+- A description that is **not `"boring"`**
+
+Return the result table ordered by **rating in descending order**.
+
+---
+
+## 💡 Explanation
+
+We need to filter the `Cinema` table based on two conditions:
+
+1. The movie `id` should be odd.
+2. The movie description should not be `"boring"`.
+
+After filtering the required movies, we sort them according to their rating from highest to lowest.
+
+---
+
+## 🧠 Approach
+
+### Step 1: Find Odd IDs
+
+We use the modulo (`%`) operator:
+
+```sql
+id % 2 = 1
+  When an ID is divided by 2, an odd number leaves a remainder of 1.
+
+ID	ID % 2
+1	1
+2	0
+3	1
+4	0
+
+Therefore:
+
+id % 2 = 1
+
+selects only odd-numbered movie IDs.
+
+Step 2: Exclude Boring Movies
+
+We use:
+
+description != 'boring'
+
+This removes all movies whose description is "boring".
+
+Step 3: Sort by Rating
+
+Finally:
+
+ORDER BY rating DESC
+
+sorts the movies from highest rating to lowest rating.
+
+💻 Solution
+# Write your MySQL query statement below
+
+SELECT *
+FROM cinema c
+WHERE c.id % 2 = 1
+  AND c.description != 'boring'
+ORDER BY c.rating DESC;

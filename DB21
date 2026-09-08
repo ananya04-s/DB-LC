@@ -1,0 +1,42 @@
+# 🔢 Biggest Single Number
+
+## 📌 Question
+
+Find the largest number that appears **only once** in the `MyNumbers` table.
+
+If no number appears exactly once, return `NULL`.
+
+---
+
+## 💡 Explanation
+
+We need to identify numbers that occur only once and then find the maximum among them.
+
+The solution uses a **subquery**:
+
+1. Group all numbers using `GROUP BY`.
+2. Count how many times each number appears.
+3. Keep only numbers with a count of `1`.
+4. Use `MAX()` on those unique numbers to find the largest one.
+
+---
+
+## 🧠 Approach
+
+### Step 1: Group the Numbers
+
+```sql
+GROUP BY num
+
+
+
+# Write your MySQL query statement below
+
+SELECT MAX(num) AS num
+FROM MyNumbers
+WHERE num IN (
+    SELECT num
+    FROM MyNumbers
+    GROUP BY num
+    HAVING COUNT(*) = 1
+);

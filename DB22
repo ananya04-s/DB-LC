@@ -1,0 +1,47 @@
+# 🛍️ Product Sales Analysis I
+
+## 📌 Question
+
+Write a solution to report the **product name**, **year**, and **price** for each sale.
+
+The result should contain:
+
+- `product_name`
+- `year`
+- `price`
+
+The `Sales` table contains sales information, while the `Product` table contains product details.
+
+---
+
+## 💡 Explanation
+
+We need information from two different tables:
+
+### `Sales` Table
+
+Contains details about product sales such as:
+
+- `product_id`
+- `year`
+- `price`
+
+### `Product` Table
+
+Contains product details such as:
+
+- `product_id`
+- `product_name`
+
+Both tables have a common column:
+
+```sql
+product_id
+
+
+# Write your MySQL query statement below
+
+SELECT product_name, year, price
+FROM Sales S
+INNER JOIN Product P
+ON S.product_id = P.product_id;
